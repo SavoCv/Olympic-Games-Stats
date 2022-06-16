@@ -1,6 +1,7 @@
 package oi;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -104,6 +105,7 @@ public class WindowApplication extends JFrame {
 			boolean team, String medal){
 		System.out.println(metrics + " " + sport + " " + year + " " + ind + " " + 
 			team + " " +  medal);
+		//TODO
 	}
 	
 	private void populateWindow()
@@ -170,6 +172,7 @@ public class WindowApplication extends JFrame {
 	WindowApplication()
 	{	
 		super.setBounds(200, 100, 800, 500);
+		super.setMinimumSize(new Dimension(600, 400));
 		super.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		super.addWindowListener(new WindowAdapter() {
 			@Override
