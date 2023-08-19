@@ -1,0 +1,23 @@
+﻿  pch.cpp
+  Athlete.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Athlete.cpp(33,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  AthletesInfo.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\AthletesInfo.cpp(52,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Competitor.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Competitor.cpp(68,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Country.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Country.cpp(28,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Event.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Event.cpp(24,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Games.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Games.cpp(45,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Information.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Information.cpp(22,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  main.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\main.cpp(626,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Sport.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Sport.cpp(31,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Team.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\New folder\Team.cpp(66,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  dllmain.cpp
+  Generating Code...

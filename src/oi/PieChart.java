@@ -2,25 +2,31 @@ package oi;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.font.FontRenderContext;
 import java.util.Vector;
-import javax.swing.*;
 
 public class PieChart extends Graph {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4898433648774474452L;
 	static final private int pieBorder = 50;
 	
 	static class Pair{
 		String country;
-		int br;
+		int num;
 		Pair(String d, int b){
 			country = d;
-			br = b;
+			num = b;
 		}
 	}
 	
 	Vector <Pair> data = new Vector<>();
-	Color[] colors = new Color[100];
+	Color[] colors = new Color[10000];
+	
+	{
+		updateData();
+	}
 	
 	static private boolean isSimilarColor(int a, int b)
 	{
@@ -50,21 +56,44 @@ public class PieChart extends Graph {
 		}
 	}
 	
+	native public void getData();
+	
+	@Override
+	public void updateData()
 	{
-		data.add(new Pair("USA", 50));
-		data.add(new Pair("Russia", 40));
-		data.add(new Pair("Great Britain", 30));
-		data.add(new Pair("China", 20));
-		data.add(new Pair("Canada", 15));
-		data.add(new Pair("Serbia", 10));
-		data.add(new Pair("Germany", 9));
-		data.add(new Pair("France", 8));
-		data.add(new Pair("Spain", 7));
-		data.add(new Pair("Brazil", 6));
-		data.add(new Pair("Portugal", 5));
+		//System.out.println(getGraphics());
+		data.clear();
+		Thread t = new Thread(){
+			public void run() {
+				gettingData = 1;
+				repaint();
+				getData();
+				data.sort((p1, p2)->{return - p1.num + p2.num;});
+				Pair other = new Pair("Other", 0);
+				int sum = 0;
+				for(int i = 0; i < data.size(); ++i)
+					sum += data.get(i).num;
+				
+				for(int i = data.size() - 1; i >= 0; --i)
+				{
+					if(data.get(i).num * 1. / sum < 0.02) {
+						other.num += data.get(i).num;
+						data.remove(i);
+					}
+				}
+				if(other.num != 0)
+					data.add(other);
+				gettingData = 2;
+				repaint();
+			};
+		};
+		t.start();
 	}
 	
-	native public void getData();
+	synchronized public void add(String s, int num)
+	{
+		data.add(new Pair(s, num));
+	}
 	
 	//getting data
 	{
@@ -87,25 +116,28 @@ public class PieChart extends Graph {
 	}
 	
 	@Override
-	protected void paintComponent(Graphics g) {
-		g.setColor(Color.RED);
-		g.drawRect(getFX(), getFY(), getFWidth(), getFHeight());
-		g.setColor(Color.GRAY);
+	synchronized protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		drawChart(g);
 	}
 	
 	private void drawChart(Graphics g)
 	{
-		if(data.size() == 0)
+		if(gettingData == 1) {
+			g.setColor(Color.RED);
+			g.drawString("Please wait", pieBorder, pieBorder);
+		} else if(data.size() == 0)
 		{
 			//NO DATA
+			g.setColor(Color.RED);
+			g.drawString("No data", pieBorder, pieBorder);;
 		}
 		else
 		{
 			int sum = 0;
 			for(int i = 0; i < data.size(); ++i)
 			{
-				sum += data.get(i).br;
+				sum += data.get(i).num;
 			}
 			int lastAngle = 0;
 			int angle;
@@ -113,8 +145,10 @@ public class PieChart extends Graph {
 			int strX, strY, rx, ry, R;
 			for(int i = 0; i < data.size(); ++i)
 			{
-				angle = (int)(360 * data.get(i).br * 1. / sum + leftAngle);
-				leftAngle = 360 * data.get(i).br * 1. / sum + leftAngle - angle;
+				angle = (int)(360 * data.get(i).num * 1. / sum + leftAngle);
+				if(i == data.size() - 1)
+					angle = 360 - lastAngle;
+				leftAngle = 360 * data.get(i).num * 1. / sum + leftAngle - angle;
 				g.setColor(colors[i]);
 				g.fillArc(getPX(), getPY(), get2R(), get2R(), lastAngle, angle);
 				lastAngle += angle;

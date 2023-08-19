@@ -3,14 +3,10 @@ package oi;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
@@ -19,8 +15,8 @@ public class WindowApplication extends JFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1144900541709622184L;
+
 	private class QuitDialog extends JDialog
 	{
 		/**
@@ -91,7 +87,6 @@ public class WindowApplication extends JFrame {
 				@Override
 				public void windowClosing(WindowEvent e) {
 					dispose();
-					WindowApplication.this.dispose();
 				}
 			});
 			
@@ -103,14 +98,26 @@ public class WindowApplication extends JFrame {
 	
 	private void filter(String metrics, String sport, String year, boolean ind, 
 			boolean team, String medal){
-		System.out.println(metrics + " " + sport + " " + year + " " + ind + " " + 
-			team + " " +  medal);
-		//TODO
+		//System.out.println(metrics + " " + sport + " " + year + " " + ind + " " + team + " " +  medal);
+		super.remove(graph);
+		//graph.invalidate();
+		if(metrics == "Num of athletes")
+			graph = pie;
+		else
+			graph = xy;
+		super.add(graph);
+		graph.setFilter(metrics, sport, year, ind, team, medal);
 	}
+
+	private Graph graph, pie, xy;
 	
 	private void populateWindow()
 	{
-		add(new PieChart());
+		graph = new PieChart();
+		pie = graph;
+		xy = new XYGraph();
+		
+		add(graph);
 		
 		JPanel choosingPanel = new JPanel(new GridLayout(6, 1));
 		choosingPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -140,8 +147,8 @@ public class WindowApplication extends JFrame {
 		p3.add(new JLabel("Year: "));
 		p3.add(year);
 		
-		individual = new JCheckBox("Individual");
-		team = new JCheckBox("Team");
+		individual = new JCheckBox("Individual", true);
+		team = new JCheckBox("Team", true);
 		p4 = new JPanel();
 		p4.add(individual);
 		p4.add(team);
@@ -157,6 +164,15 @@ public class WindowApplication extends JFrame {
 			filter((String) metrics.getSelectedItem(), sport.getText(), year.getText(), 
 					individual.isSelected(), team.isSelected(), (String) medal.getSelectedItem());
 		});
+		filter.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == 10) {
+					filter((String) metrics.getSelectedItem(), sport.getText(), year.getText(), 
+							individual.isSelected(), team.isSelected(), (String) medal.getSelectedItem());
+				}
+			}
+		});
 		p6 = new JPanel();
 		p6.add(filter);
 		
@@ -171,6 +187,7 @@ public class WindowApplication extends JFrame {
 	
 	WindowApplication()
 	{	
+		super("Olympic games");
 		super.setBounds(200, 100, 800, 500);
 		super.setMinimumSize(new Dimension(600, 400));
 		super.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
@@ -187,6 +204,7 @@ public class WindowApplication extends JFrame {
 	}
 	
 	public static void main(String[] args) {
+		System.loadLibrary("DLL");
 		new WindowApplication();
 	}
 }

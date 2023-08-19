@@ -1,0 +1,22 @@
+﻿  main.cpp
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\AthletesInfo.h(28,34): warning C4244: 'return': conversion from 'const double' to 'int', possible loss of data
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\AthletesInfo.h(29,34): warning C4244: 'return': conversion from 'const double' to 'int', possible loss of data
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\main.cpp(53,15): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\main.cpp(94,18): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\main.cpp(98,13): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\main.cpp(402,41): warning C4267: '+=': conversion from 'size_t' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\main.cpp(404,48): warning C4267: '+=': conversion from 'size_t' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\Dll\main.cpp(406,49): warning C4267: '+=': conversion from 'size_t' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+  Dll.vcxproj -> C:\Users\savoc\Desktop\Savo\Faculty\4. semestar\POOP\Za drugi projekat\Drugi projekat\Dll\x64\Debug\Dll.dll
